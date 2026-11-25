@@ -35,4 +35,6 @@ claude plugin install aotearoa-weather --marketplace DWellsBCN/aotearoa-weather
 
 In the desktop app, where `/plugin` does not run: click + next to the prompt box, then Plugins, Add marketplace with `DWellsBCN/aotearoa-weather`, then Add plugin.
 
-This repository is private: it installs only for people who can read it on GitHub and whose machine already holds a git credential for github.com (an SSH key, or `gh auth login` then `gh auth setup-git`).
+### Cloud sessions
+
+Plugins installed on your own machine don't carry into cloud sessions. Add it to your claude.ai account instead: at claude.ai/customize/plugins, add the marketplace `DWellsBCN/aotearoa-weather`, add the `aotearoa-weather` plugin, then start a new cloud session. For live weather there, add `api.open-meteo.com` to the cloud environment's allowed domains; without it the sky shows a default fine day.
