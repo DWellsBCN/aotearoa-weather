@@ -1,0 +1,31 @@
+{
+  "name": "aotearoa-weather",
+  "version": "0.1.0",
+  "description": "A colourful Aotearoa New Zealand theme whose sky follows the live weather in a NZ city.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "city": {
+      "type": "string",
+      "title": "NZ city",
+      "description": "Whose weather the sky shows",
+      "default": "Wellington",
+      "options": [
+        "Auckland",
+        "Hamilton",
+        "Tauranga",
+        "Rotorua",
+        "Napier",
+        "Wellington",
+        "Nelson",
+        "Christchurch",
+        "Tekapo",
+        "Queenstown",
+        "Dunedin"
+      ]
+    }
+  },
+  "author": {
+    "name": "David Wells"
+  },
+  "license": "MIT"
+}

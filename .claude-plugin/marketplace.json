@@ -1,0 +1,5 @@
+{
+  "name": "aotearoa-weather",
+  "owner": { "name": "David Wells" },
+  "plugins": [{ "name": "aotearoa-weather", "source": "./" }]
+}
