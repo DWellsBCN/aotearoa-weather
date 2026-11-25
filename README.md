@@ -14,7 +14,7 @@ in light and dark mode.
 
 - Weather comes from Open-Meteo (free, no key) every 15 minutes. Only the city's coordinates are sent.
 - `/nz-weather` refreshes it now and shows the current reading.
-- Pick your city in `/config` under `aotearoa-weather` (Auckland to Dunedin, default Wellington).
+- `/nz-weather auckland` switches city and remembers it (Auckland, Hamilton, Tauranga, Rotorua, Napier, Wellington, Nelson, Christchurch, Tekapo, Queenstown, Dunedin; default Wellington). The city is also in `/config` under `aotearoa-weather`.
 - The status line shows e.g. `Wellington 14° · Rain · 22 km/h`.
 
 ## Install

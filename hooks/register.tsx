@@ -389,7 +389,8 @@ export const register: Register = (on, options) => {
 
     await $.command.register({
       name: 'nz-weather',
-      description: 'Refresh the Aotearoa sky and show the weather for your NZ city',
+      description: 'Show the weather for your NZ city, or switch city: /nz-weather auckland',
+      argumentHint: '[city]',
     })
 
     const set = await $.theme.set(LOOK)
@@ -401,13 +402,27 @@ export const register: Register = (on, options) => {
     return next(e)
   })
 
-  on('command.run', { command: 'nz-weather' }, async $ => {
-    const now = await refresh($, city)
+  on('command.run', { command: 'nz-weather' }, async ($, e) => {
+    const asked = e.args.trim().toLowerCase()
+    let place = city
+    if (asked !== '') {
+      const match = Object.keys(CITIES).find(name => name.toLowerCase() === asked)
+      if (match === undefined) {
+        return { text: `I don't know "${e.args.trim()}". Try one of: ${Object.keys(CITIES).join(', ')}.` }
+      }
+      place = match
+      // Saved as the mod's city setting, so it sticks for later sessions too.
+      const saved = await $.config.set({ key: `${PLUGIN}.city`, value: place })
+      if ('deny' in saved && saved.deny !== undefined) {
+        return { text: `Couldn't save ${place} as your city: ${saved.deny}` }
+      }
+    }
+    const now = await refresh($, place)
 
     return {
       text: now.isLive
-        ? `Kia ora! ${describe(now)}. The sky is updated. Change city in /config under ${PLUGIN}.`
-        : `Couldn't reach Open-Meteo just now, so the sky shows a fine-ish default for ${city}.`,
+        ? `Kia ora! ${describe(now)}. The sky is updated.`
+        : `Couldn't reach Open-Meteo just now, so the sky shows a fine-ish default for ${place}.`,
     }
   })
 
